@@ -10,7 +10,7 @@ import Button from '../Button'
 
 const Header = () => {
   return (
-    <Wrapper>
+    <header>
       <SuperHeader>
         <Row>
           <ActionGroup>
@@ -22,29 +22,30 @@ const Header = () => {
             </button>
           </ActionGroup>
           <ActionGroup>
-            <MobileButton>
+            <button>
               <User size={24} />
-            </MobileButton>
+            </button>
           </ActionGroup>
-          <SubscribeWrapper>
-            <Button>Subscribe</Button>
-            <Link>Already a subscriber?</Link>
-          </SubscribeWrapper>
         </Row>
       </SuperHeader>
       <MainHeader>
+        <DesktopActionGroup>
+          <button>
+            <Search size={24} />
+          </button>
+          <button>
+            <Menu size={24} />
+          </button>
+        </DesktopActionGroup>
         <Logo />
+        <SubscribeWrapper>
+          <Button>Subscribe</Button>
+          <SubLink href="/">Already a subscriber?</SubLink>
+        </SubscribeWrapper>
       </MainHeader>
-    </Wrapper>
+    </header>
   )
 }
-
-const Wrapper = styled.header`
-  @media ${QUERIES.laptopAndUp} {
-    position: relative;
-    margin: 16px 0 81px 0;
-  }
-`
 
 const SuperHeader = styled.div`
   padding: 16px 0;
@@ -52,22 +53,13 @@ const SuperHeader = styled.div`
   color: white;
 
   @media ${QUERIES.laptopAndUp} {
-    background: var(--color-gray-100);
-    color: var(--color-gray-900);
-    min-height: 98px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: none;
   }
 `
 
 const Row = styled(MaxWidthWrapper)`
   display: flex;
   justify-content: space-between;
-
-  @media ${QUERIES.laptopAndUp} {
-    flex: 1;
-  }
 `
 
 const ActionGroup = styled.div`
@@ -83,6 +75,14 @@ const ActionGroup = styled.div`
   }
 `
 
+const DesktopActionGroup = styled(ActionGroup)`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
+`
+
 const MainHeader = styled(MaxWidthWrapper)`
   display: flex;
   align-items: center;
@@ -90,15 +90,19 @@ const MainHeader = styled(MaxWidthWrapper)`
   margin-top: 32px;
   margin-bottom: 48px;
 
-  @media ${QUERIES.laptopAndUp} {
-    position: absolute;
-    inset: 0;
+  @media ${QUERIES.tabletAndUp} {
+    margin-top: 48px;
+    margin-bottom: 72px;
   }
-`
 
-const MobileButton = styled.button`
   @media ${QUERIES.laptopAndUp} {
-    display: none;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-content: revert;
+    justify-items: start;
+    margin-top: 16px;
+    margin-bottom: 72px;
   }
 `
 
@@ -106,17 +110,20 @@ const SubscribeWrapper = styled.div`
   display: none;
 
   @media ${QUERIES.laptopAndUp} {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    justify-self: end;
+    display: revert;
+    position: relative;
   }
 `
 
-const Link = styled.a`
+const SubLink = styled.a`
   font-size: 0.875rem;
   font-style: italic;
   text-decoration: underline;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
 `
 
 export default Header

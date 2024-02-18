@@ -23,7 +23,7 @@ const Link = styled.a`
   font-family: var(--font-family-logo);
   font-size: 3rem;
 
-  @media ${QUERIES.laptopAndUp} {
+  @media ${QUERIES.tabletAndUp} {
     font-size: 4rem;
   }
 `
