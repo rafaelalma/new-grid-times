@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from 'react'
+import styled from 'styled-components/macro'
 
 const OpinionStory = ({ id, title, author, avatar }) => {
   return (
-    <a href={`/story/${id}`}>
+    <AnchorWrapper href={`/story/${id}`}>
       <Wrapper>
         <Avatar alt="" src={avatar} />
         <div>
@@ -11,13 +11,23 @@ const OpinionStory = ({ id, title, author, avatar }) => {
           <ArticleTitle>{title}</ArticleTitle>
         </div>
       </Wrapper>
-    </a>
-  );
-};
+    </AnchorWrapper>
+  )
+}
+
+const AnchorWrapper = styled.a`
+  border-bottom: 1px solid var(--color-gray-300);
+  padding: 16px 0;
+
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+`
 
 const Wrapper = styled.article`
   color: var(--color-gray-900);
-`;
+`
 
 const Avatar = styled.img`
   display: block;
@@ -25,19 +35,19 @@ const Avatar = styled.img`
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-`;
+`
 
 const AuthorName = styled.p`
   font-size: 1.125rem;
   font-weight: var(--font-weight-medium);
   color: var(--color-gray-700);
   margin-bottom: 4px;
-`;
+`
 
 const ArticleTitle = styled.h3`
   font-size: 1.125rem;
   font-weight: var(--font-weight-bold);
   line-height: 1.3;
-`;
+`
 
-export default OpinionStory;
+export default OpinionStory
